@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.jiuwan.utils.HobbitHanler" />
+        <variable
+            name="dataClass1"
+            type="com.jiuwan.utils.DataClass1" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+        <variable
+            name="hobbits"
+            type="com.jiuwan.utils.Hobbits" />
+        <variable
+            name="hobbitHandler"
+            type="HobbitHanler" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:text="@{dataClass1.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{clickListener}"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/tv_sex"
+            android:text="@{dataClass1.sex}"
+            android:onClick="@{clickListener}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            />
+        <com.jiuwan.utils.CustomList
+            android:overScrollMode="never"
+            android:id="@+id/rv_hobbits"
+            app:hobbitsData="@{hobbits}"
+            app:hobbitHandler="@{hobbitHandler}"
+            app:layout_constraintTop_toBottomOf="@id/tv_sex"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="250dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
