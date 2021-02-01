@@ -4,10 +4,11 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.carousel
 
 @BindingAdapter("hobbitsData","hobbitHandler")
 fun epoxyBindHobbits(epoxyRecyclerVeiew: EpoxyRecyclerView,hobbits: Hobbits?,hobbitHandler:HobbitHanler){
-    epoxyRecyclerVeiew.layoutManager=LinearLayoutManager(epoxyRecyclerVeiew.context,LinearLayoutManager.VERTICAL,false)
+    epoxyRecyclerVeiew.layoutManager=LinearLayoutManager(epoxyRecyclerVeiew.context,LinearLayoutManager.HORIZONTAL,false)
     epoxyRecyclerVeiew.withModels {
 
         hobbits?.data?.forEach { item->
@@ -18,9 +19,13 @@ fun epoxyBindHobbits(epoxyRecyclerVeiew: EpoxyRecyclerView,hobbits: Hobbits?,hob
                     hobbitHandler.handleHobbitClick(item)
                 })
             }
+            carousel {
+
+            }
 
         }
     }
+    epoxyRecyclerVeiew.setItemSpacingDp(30)
 }
 
 interface HobbitHanler{

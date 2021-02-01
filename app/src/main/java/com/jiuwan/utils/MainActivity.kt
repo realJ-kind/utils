@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.epoxy.DataBindingEpoxyModel
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.EpoxyVisibilityTracker
+import com.airbnb.epoxy.OnModelVisibilityChangedListener
 import com.jiuwan.platformapp.utils.showToast
 import com.jiuwan.utils.databinding.ActivityMainBinding
 
@@ -18,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         binding.lifecycleOwner=this
+        val epoxyVisibilityTracker = EpoxyVisibilityTracker()
+        epoxyVisibilityTracker.attach(binding.epoxyRv)
         binding.epoxyRv.withModels {
             person {
                 id("p2")
@@ -37,7 +43,19 @@ class MainActivity : AppCompatActivity() {
                         showToast("you clicked ${hobbit}")
                     }
                 })
+                onVisibilityChanged{ model, view, percentVisibleHeight, percentVisibleWidth, visibleHeight, visibleWidth ->
+
+                }
             }
         }
+        binding.epoxyRv.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 }

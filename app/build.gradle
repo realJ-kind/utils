@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.jiuwan.utils"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,9 @@ android {
 }
 
 dependencies {
+
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
+    implementation "androidx.cardview:cardview:1.0.0"
 
     def epoxyVersion="4.3.1"
 
