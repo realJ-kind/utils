@@ -61,8 +61,7 @@ class CarouselActivity:AppCompatActivity() {
                     .display(displayData)
                     .click(object :View.OnClickListener{
                         override fun onClick(v: View?) {
-                            try {
-                                HaFragment().apply {
+                            try { HaFragment().apply {
                                     arguments=Bundle()
                                 }.show(supportFragmentManager,HaFragment.TAG)
                             }

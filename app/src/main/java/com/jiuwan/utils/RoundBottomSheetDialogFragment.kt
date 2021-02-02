@@ -33,9 +33,9 @@ abstract class RoundBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     //圆角
-    /*override fun getTheme(): Int {
+    override fun getTheme(): Int {
         return R.style.CustomBottomSheetDialog;
-    }*/
+    }
 
 
     override fun onResume() {

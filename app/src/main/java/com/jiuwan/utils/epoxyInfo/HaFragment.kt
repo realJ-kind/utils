@@ -3,7 +3,7 @@ package com.jiuwan.utils.epoxyInfo
 import com.jiuwan.utils.R
 import com.jiuwan.utils.RoundBottomSheetDialogFragment
 
-class HaFragment:CenterDialogFragment() {
+class HaFragment:RoundBottomSheetDialogFragment() {
 
     companion object{
         val TAG=HaFragment::class.java.canonicalName
