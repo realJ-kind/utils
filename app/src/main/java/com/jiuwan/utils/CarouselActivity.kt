@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.jiuwan.platformapp.utils.showToast
 import com.jiuwan.utils.databinding.ActivityCarrouselBinding
 import com.jiuwan.utils.epoxyInfo.CirclePagerIndicatorDecoration
 import com.jiuwan.utils.epoxyInfo.CirclePageIndicatorCarousel
+import com.jiuwan.utils.epoxyInfo.HaFragment
 import com.jiuwan.utils.epoxyInfo.circlePageIndicatorCarousel
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import java.lang.Exception
 
 class CarouselActivity:AppCompatActivity() {
 
@@ -60,8 +61,16 @@ class CarouselActivity:AppCompatActivity() {
                     .display(displayData)
                     .click(object :View.OnClickListener{
                         override fun onClick(v: View?) {
-                            showToast(displayData)
+                            try {
+                                HaFragment().apply {
+                                    arguments=Bundle()
+                                }.show(supportFragmentManager,HaFragment.TAG)
+                            }
+                            catch (e:Exception){
+
+                            }
                         }
+
                     })
                 )
             }
@@ -74,7 +83,7 @@ class CarouselActivity:AppCompatActivity() {
                         .models(models)
                 paddingDp(20)
                 onBind { model, view: CirclePageIndicatorCarousel, position ->
-                    if(!wraperred){
+                    if(true){
                         wraperred=true
                         view.adapter= (view.adapter?.let { AlphaInAnimationAdapter(it) })?.let { ScaleInAnimationAdapter(it) }
                     }

@@ -43,6 +43,8 @@ android {
 
 dependencies {
 
+    implementation 'com.afollestad.material-dialogs:core:3.2.1'
+
     implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
     implementation "androidx.cardview:cardview:1.0.0"
 
