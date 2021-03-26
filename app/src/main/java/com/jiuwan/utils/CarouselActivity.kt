@@ -42,7 +42,7 @@ class CarouselActivity:AppCompatActivity() {
             data.add("帅帅")
         }
         return data*/
-        list.add("帅帅").also { return list }
+        list.add("adasdad").also { return list }
     }
 
     val circlePagerIndicatorDecoration by lazy {CirclePagerIndicatorDecoration()}

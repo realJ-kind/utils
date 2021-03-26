@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.jiuwan.utils.ui.StickyLayout
+            android:id="@+id/sticky_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <TextView
+                android:id="@+id/sticky_layout_content"
+                android:text="content"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" >
+            </TextView>
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/sticky_layout_sticky_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#666666"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                app:tl_indicator_gravity="TOP"
+                app:tl_textBold="SELECT"
+                app:tl_underline_color="#1A000000"
+                app:tl_underline_gravity="TOP"
+                app:tl_underline_height="1dp" />
+
+            <!--scrolling content-->
+            <!--<androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_v"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="@string/large_text" />
+
+            </androidx.core.widget.NestedScrollView>-->
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.jiuwan.utils.ui.StickyLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" >
+
+
+            <TextView
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="#678"
+                android:text="toolbar"
+                tools:ignore="MissingConstraints" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

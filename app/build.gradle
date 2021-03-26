@@ -43,17 +43,49 @@ android {
 
 dependencies {
 
+
+    //epoxy
+    def epoxyVersion="4.3.1"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.2'
+
+
+    def download="1.0.7"
+    // core
+    implementation("com.liulishuo.okdownload:okdownload:${download}")
+    // provide sqlite to store breakpoints
+
+    // provide okhttp to connect to backend
+    // and then please import okhttp dependencies by yourself
+
+    // provide interface to match filedownloader
+
+    // provide interface for kotlin extension
+    implementation("com.liulishuo.okdownload:sqlite:${download}")
+    implementation("com.liulishuo.okdownload:okhttp:${download}")
+    implementation("com.liulishuo.okdownload:filedownloader:${download}")
+    implementation("com.liulishuo.okdownload:ktx:${download}")
+
+
+
     implementation 'com.afollestad.material-dialogs:core:3.2.1'
 
     implementation 'jp.wasabeef:recyclerview-animators:4.0.1'
     implementation "androidx.cardview:cardview:1.0.0"
 
-    def epoxyVersion="4.3.1"
+   /* def epoxyVersion="4.3.1"
 
     implementation "com.airbnb.android:epoxy:$epoxyVersion"
     implementation "com.airbnb.android:epoxy-databinding:4.3.1"
     // Add the annotation processor if you are using Epoxy's annotations (recommended)
-    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"*/
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
