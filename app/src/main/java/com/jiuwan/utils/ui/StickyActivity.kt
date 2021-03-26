@@ -28,13 +28,13 @@ class StickyActivity:AppCompatActivity() {
             if(windowInsetsCompat.systemWindowInsetTop>=0)
                 inset=true
         }
-        view.doOnLayout {
+        view.addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             if(inset){
-                val toolbarheight=it.bottom
-                findViewById<StickyLayout>(R.id.sticky_layout).toolbarHieght=toolbarheight
+                val toolbarheight=v.height
+                findViewById<StickyLayout>(R.id.sticky_layout).applyToolBarInsets(toolbarheight)
             }
         }
-        binding.stickyLayoutStickyHeader.setViewPager(binding.viewPager, arrayOf("111","222","333"),this,
+        binding.stickyLayoutStickyHeader.setViewPager(binding.stickyLayoutViewpager, arrayOf("111","222","333"),this,
             arrayListOf(StickyFragment(), StickyFragment(),StickyFragment()))
         binding.stickyLayout.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             val scrolled=scrollY

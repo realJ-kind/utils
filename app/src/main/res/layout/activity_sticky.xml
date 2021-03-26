@@ -39,22 +39,8 @@
                 app:tl_underline_gravity="TOP"
                 app:tl_underline_height="1dp" />
 
-            <!--scrolling content-->
-            <!--<androidx.core.widget.NestedScrollView
-                android:id="@+id/scroll_v"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:text="@string/large_text" />
-
-            </androidx.core.widget.NestedScrollView>-->
-
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/view_pager"
+                android:id="@+id/sticky_layout_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -74,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:background="#678"
+                android:background="#00ffffff"
                 android:text="toolbar"
                 tools:ignore="MissingConstraints" />
 

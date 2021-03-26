@@ -4,19 +4,21 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.view.animation.DecelerateInterpolator
+import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.ViewCompat
+import androidx.viewpager.widget.ViewPager
 import com.jiuwan.utils.R
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 class StickyLayout
 @JvmOverloads constructor(
-        context: Context,
-        attributeSet: AttributeSet? = null,
-        defStyle: Int = 0) : LinearLayout(context, attributeSet, defStyle)
+    context: Context,
+    attributeSet: AttributeSet? = null,
+    defStyle: Int = 0
+) : LinearLayout(context, attributeSet, defStyle)
         , NestedScrollingParent3{
 
     init {
@@ -38,11 +40,26 @@ class StickyLayout
         Log.e(TAG, "onStopNestedScroll")
     }
 
-    override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int, consumed: IntArray) {
+    override fun onNestedScroll(
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int,
+        consumed: IntArray
+    ) {
         Log.e(TAG, "onNestedScroll")
     }
 
-    override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
+    override fun onNestedScroll(
+        target: View,
+        dxConsumed: Int,
+        dyConsumed: Int,
+        dxUnconsumed: Int,
+        dyUnconsumed: Int,
+        type: Int
+    ) {
         Log.e(TAG, "onNestedScroll")
     }
 
@@ -51,7 +68,10 @@ class StickyLayout
         Log.e(TAG, "onNestedPreScroll")
         if(toolbarHieght<=0) {
             //todo:consume fling but not fling0
-            Log.e(TAG, "toolbar height not set,consume all dy but not Scroll,so child do not scroll either")
+            Log.e(
+                TAG,
+                "toolbar height not set,consume all dy but not Scroll,so child do not scroll either"
+            )
             consumed[1]=dy
             return
         }
@@ -79,15 +99,58 @@ class StickyLayout
     }
 
 
+    var viewPortHeight =0
+
+    val lock =AtomicBoolean(true)
+
+    var originalLayoutParamsHeight=0
+
+    val heightLock =AtomicBoolean(true)
+
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        //不限制顶部的高度
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        if(measuredHeight>0){
+            if(lock.compareAndSet(true,false))
+                viewPortHeight=measuredHeight
+        }
+
+        val params: ViewGroup.LayoutParams = mViewPager.getLayoutParams()
+
+        if(heightLock.compareAndSet(true,false)) originalLayoutParamsHeight=params.height
+
+        params.height = viewPortHeight - mNav.measuredHeight - toolbarHieght.also {
+            Log.e(TAG, "onMeasure toolbar height:${toolbarHieght}", )
+        }
+
+      /*  measureChild(mViewPager
+            ,MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
+            ,MeasureSpec.makeMeasureSpec(mTop.measuredHeight + viewPortHeight-toolbarHieght, MeasureSpec.EXACTLY))
+        */
+
+        setMeasuredDimension(
+            measuredWidth,
+            mTop.measuredHeight + viewPortHeight-toolbarHieght
+        )
     }
 
 
-    var  toolbarHieght= -1
+    var  toolbarHieght= 0
+
+    fun applyToolBarInsets(toolbarHeight:Int){
+        toolbarHieght=toolbarHeight.also {
+            Log.e(TAG, "applyToolBarInsets: ${toolbarHeight}", )
+        }
+        post{
+            requestLayout()
+        }
+    }
 
 
     var mTopViewHeight=0
+
+    lateinit var mViewPager:ViewPager
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -102,11 +165,13 @@ class StickyLayout
         super.onFinishInflate()
         mTop = findViewById<View>(R.id.sticky_layout_content)
         mNav = findViewById<View>(R.id.sticky_layout_sticky_header)
-     /*   val view = findViewById<View>(R.id.id_stickynavlayout_viewpager) as? ViewPager
+
+        val view = findViewById<View>(R.id.sticky_layout_viewpager) as? ViewPager
                 ?: throw RuntimeException(
                         "id_stickynavlayout_viewpager show used by ViewPager !")
-        mViewPager = view*/
+        mViewPager = view
     }
+
 
 
 
