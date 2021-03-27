@@ -27,7 +27,8 @@
 
 
         </activity>
-        <activity android:name=".ui.StickyActivity" >
+        <activity android:name=".ui.StickyActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

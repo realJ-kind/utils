@@ -5,6 +5,9 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.Interpolator
 import android.widget.LinearLayout
 import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.ViewCompat
@@ -21,8 +24,11 @@ class StickyLayout
 ) : LinearLayout(context, attributeSet, defStyle)
         , NestedScrollingParent3{
 
+    var mInterpolator: Interpolator?=null
+
     init {
         orientation= VERTICAL
+        mInterpolator=DecelerateInterpolator(1f)
     }
 
     private val TAG = "StickyNavLayout"
@@ -94,9 +100,14 @@ class StickyLayout
         }
         val dis=if (scrollY>mTopViewHeight-toolbarHieght) mTopViewHeight-toolbarHieght  else if(scrollY<0) 0 else scrollY
         val percent=dis.toFloat() /(mTopViewHeight-toolbarHieght)
-        mTop.alpha=percent
+
+        mTop.alpha= if(mInterpolator==null)(1-percent) else{
+            mInterpolator!!.getInterpolation(1-percent)
+        }
 
     }
+
+
 
 
     var viewPortHeight =0
@@ -109,7 +120,6 @@ class StickyLayout
 
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        //不限制顶部的高度
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if(measuredHeight>0){
             if(lock.compareAndSet(true,false))
@@ -123,7 +133,7 @@ class StickyLayout
         params.height = viewPortHeight - mNav.measuredHeight - toolbarHieght.also {
             Log.e(TAG, "onMeasure toolbar height:${toolbarHieght}", )
         }
-        if(toolbarHieght>0){mViewPager.post { mViewPager.requestLayout() }}
+        //if(toolbarHieght>0){mViewPager.post { mViewPager.requestLayout() }}
 
 
         setMeasuredDimension(
@@ -135,7 +145,7 @@ class StickyLayout
 
     var  toolbarHieght= 0
 
-    fun applyToolBarInsets(toolbarHeight:Int){
+    fun applyToolBarWithInsets(toolbarHeight:Int){
         toolbarHieght=toolbarHeight.also {
             Log.e(TAG, "applyToolBarInsets: ${toolbarHeight}", )
         }

@@ -8,7 +8,7 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,26 +17,111 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-            <TextView
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sticky_layout_content"
-                android:text="content"
-                android:textSize="30sp"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="350dp" >
-            </TextView>
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@mipmap/tiktok"
+                    android:layout_marginTop="65dp"
+                    android:paddingTop="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:text="抖音极速版"
+                    android:padding="5dp"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+                
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/info"
+                    android:paddingVertical="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" >
+                    <View
+                        android:id="@+id/center"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="1dp"
+                        android:background="#D8D7DA"
+                        android:layout_height="14dp" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:text="   4.8分    6.5亿次下载    "
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:text="    摄影榜-今日第一"
+                        android:textColor="#F4A438"
+                        app:layout_constraintStart_toEndOf="@id/center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:textSize="10sp"
+                    android:paddingVertical="5dp"
+                    android:text="安全      人工亲测 >"
+                    android:textColor="#0BAE73"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/sticky_layout_sticky_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#666666"
+                android:background="?attr/colorSurface"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
-                app:tl_indicator_gravity="TOP"
+                app:tl_tab_space_equal="true"
+                app:tl_indicator_gravity="BOTTOM"
+                app:tl_indicator_height="3dp"
+                app:tl_indicator_color="#DE6C5C"
                 app:tl_textBold="SELECT"
-                app:tl_underline_color="#1A000000"
-                app:tl_underline_gravity="TOP"
+                app:tl_indicator_width="15dp"
+                app:tl_indicator_corner_radius="2dp"
+                app:tl_textUnselectColor="?attr/colorOnSurface"
+                app:tl_textSelectColor="#DE6C5C"
+                app:tl_underline_gravity="BOTTOM"
+                app:tl_underline_color="#E5E5E5"
                 app:tl_underline_height="1dp" />
 
             <androidx.viewpager.widget.ViewPager
@@ -47,26 +132,58 @@
         </com.jiuwan.utils.ui.StickyLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            android:layout_width="0dp"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
 
             <TextView
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
                 android:background="#00ffffff"
-                android:text="toolbar"
-                tools:ignore="MissingConstraints" />
+                android:padding="20dp"
+                android:textSize="17sp"
+                android:text="抖音极速版"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/back"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:padding="5dp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/more"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_more_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:padding="5dp"
+                android:id="@+id/search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/more"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_search_24dp"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_height="wrap_content" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>
