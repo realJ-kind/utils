@@ -123,11 +123,8 @@ class StickyLayout
         params.height = viewPortHeight - mNav.measuredHeight - toolbarHieght.also {
             Log.e(TAG, "onMeasure toolbar height:${toolbarHieght}", )
         }
+        if(toolbarHieght>0){mViewPager.post { mViewPager.requestLayout() }}
 
-      /*  measureChild(mViewPager
-            ,MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
-            ,MeasureSpec.makeMeasureSpec(mTop.measuredHeight + viewPortHeight-toolbarHieght, MeasureSpec.EXACTLY))
-        */
 
         setMeasuredDimension(
             measuredWidth,
