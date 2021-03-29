@@ -7,11 +7,6 @@
 
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:background="#123345"
-        android:layout_height="match_parent" >
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
@@ -37,7 +32,6 @@
         </androidx.cardview.widget.CardView>
 
 
-    </FrameLayout>
 
 
 </layout>

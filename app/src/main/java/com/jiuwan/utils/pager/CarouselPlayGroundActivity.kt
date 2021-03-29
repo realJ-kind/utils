@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.gesture.GestureOverlayView.ORIENTATION_HORIZONTAL
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +19,8 @@ import com.jiuwan.utils.databinding.ActivityCarouselPlayGroundBinding
 
 class CarouselPlayGroundActivity : AppCompatActivity() {
 
+    val TAG="carousel"
+
     lateinit var binding:ActivityCarouselPlayGroundBinding
     val pager get() = binding.pager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +32,7 @@ class CarouselPlayGroundActivity : AppCompatActivity() {
         pager.adapter = pagerAdapter
         /*pager.setPageTransformer(ZoomOutPageTransformer())*/
         Handler().postDelayed({
-            pager.setCurrentItem(Int.MAX_VALUE / 2, false)
+            //pager.setCurrentItem(Int.MAX_VALUE / 2, false)
         }, 100)
         pager.apply {
           /*  clipToPadding=false
@@ -45,6 +48,7 @@ class CarouselPlayGroundActivity : AppCompatActivity() {
             setPageTransformer { page, position ->
                 val viewPager = page.parent.parent as ViewPager2
                 val offset = position * -(2 * offsetPx + pageMarginPx)
+                Log.e(TAG, "onCreate: offset${offset}", )
                 if (viewPager.orientation == ORIENTATION_HORIZONTAL) {
                     if (ViewCompat.getLayoutDirection(viewPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
                         page.translationX = -offset
@@ -70,7 +74,7 @@ class CarouselPlayGroundActivity : AppCompatActivity() {
      */
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
-        private val NUM_PAGES: Int=Integer.MAX_VALUE
+        private val NUM_PAGES: Int=5
 
         override fun getItemCount(): Int = NUM_PAGES
 
