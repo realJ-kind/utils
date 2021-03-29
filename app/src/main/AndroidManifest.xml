@@ -12,28 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Utils">
+        <activity android:name=".pager.CarouselPlayGroundActivity">  <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
         <activity
             android:name=".ui.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/Theme.Utils.NoActionBar">
+            android:theme="@style/Theme.Utils.NoActionBar"></activity>
+        <activity android:name=".FuckActivity"></activity>
+        <activity android:name=".download.ExoDownLoadActivity"></activity>
+        <activity android:name=".ui.StickyActivity">
 
-
-
-        </activity>
-        <activity android:name=".FuckActivity">
-
-        </activity>
-        <activity android:name=".download.ExoDownLoadActivity" >
-
-
-        </activity>
-        <activity android:name=".ui.StickyActivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
