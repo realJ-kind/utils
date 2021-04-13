@@ -87,6 +87,7 @@ class CarouselActivity:AppCompatActivity() {
                         view.adapter= (view.adapter?.let { AlphaInAnimationAdapter(it) })?.let { ScaleInAnimationAdapter(it) }
                     }
                 }
+
             }
             repeat(100){
                 justColor {
